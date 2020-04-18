@@ -1,0 +1,122 @@
+Scenario.name = [ICN_DDZZrequest_buffer_sizeZZ7500; ICN_FIFO_EpidemicZZrequest_buffer_sizeZZ7500; ICN_FIFO_SnWZZrequest_buffer_sizeZZ7500; ICN_FIFO_Epidemic_SnWZZrequest_buffer_sizeZZ7500; ICN_FIFO_SnW_SnWZZrequest_buffer_sizeZZ7500; ICN_DD_EpidemicZZrequest_buffer_sizeZZ7500; ICN_FIFO_Epi_EpiZZrequest_buffer_sizeZZ7500; ICN_FIFO_SnW_EpidemicZZrequest_buffer_sizeZZ7500]
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 30000
+Scenario.nrofHostGroups = 1
+
+# SimpleBroadcastInterface has Transmit speed of 2 Mbps = 250kBps
+# "Bluetooth" interface for all nodes
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+
+# Common settings for all groups
+Group.movementModel = ShortestPathMapBasedMovement
+Group.router = [ICN_DirectDelivery_Router_v2; ICN_FIFO_Epidemic_Router; ICN_FIFO_SnW_Router; ICN_FIFO_Epidemic_SnW_Router; ICN_FIFO_SnW_SnW_Hybrid_Router; ICN_DirectDelivery_Epidemic_Router; ICN_FIFO_Router; ICN_FIFO_SnW_Epidemic_Router]
+Group.bufferSize = 15k
+Group.waitTime = 0, 120
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.speed = 0.5, 1.5
+Group.msgTtl = 300
+Group.nrofHosts = 30
+Group.nrofApplications = 2
+Group.application1 = RequestApp
+Group.application2 = generatorApp
+
+
+# Setting for some router
+ICN_FIFO_SnW_SnW_Hybrid_Router.binaryMode = false
+ICN_FIFO_SnW_SnW_Hybrid_Router.nrofCopies = 6
+ICN_FIFO_SnW_SnW_Hybrid_Router.dataBufferSize = 7500
+ICN_FIFO_SnW_SnW_Hybrid_Router.requestBufferSize = 7500   
+
+ICN_FIFO_SnW_Router.binaryMode = false
+ICN_FIFO_SnW_Router.nrofCopies = 6
+ICN_FIFO_SnW_Router.dataBufferSize = 7500
+ICN_FIFO_SnW_Router.requestBufferSize = 7500 
+
+ICN_FIFO_SnW_Epidemic_Router.binaryMode = false
+ICN_FIFO_SnW_Epidemic_Router.nrofCopies = 6
+ICN_FIFO_SnW_Epidemic_Router.dataBufferSize = 7500
+ICN_FIFO_SnW_Epidemic_Router.requestBufferSize = 7500 
+
+ICN_FIFO_Epidemic_SnW_Router.binaryMode = false
+ICN_FIFO_Epidemic_SnW_Router.nrofCopies = 6
+ICN_FIFO_Epidemic_SnW_Router.dataBufferSize = 7500
+ICN_FIFO_Epidemic_SnW_Router.requestBufferSize = 7500 
+
+ICN_FIFO_Epidemic_Router.dataBufferSize = 7500
+ICN_FIFO_Epidemic_Router.requestBufferSize = 7500 
+
+ICN_Epi_Epi_Router.dataBufferSize = 7500
+ICN_Epi_Epi_Router.requestBufferSize = 7500 
+
+ICN_FIFO_Router.dataBufferSize = 7500
+ICN_FIFO_Router.requestBufferSize = 7500 
+
+ICN_DirectDelivery_Router_v2.dataBufferSize = 7500
+ICN_DirectDelivery_Router_v2.requestBufferSize = 7500 
+
+ICN_DirectDelivery_Router.dataBufferSize = 7500
+ICN_DirectDelivery_Router.requestBufferSize = 7500 
+
+ICN_DirectDelivery_Epidemic_Router.dataBufferSize = 7500
+ICN_DirectDelivery_Epidemic_Router.requestBufferSize = 7500 
+
+Group1.groupID = c
+Group1.okMaps = 1
+Group1.speed = 2.7, 13.9
+
+# Message creation parameters
+Events.nrof = 0
+
+# Movement model settings
+MovementModel.rngseed = 3
+MovementModel.worldSize = 4500, 3400
+MovementModel.warmup = 1000
+
+# Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.mapFile1 = data/roads.wkt
+MapBasedMovement.mapFile2 = data/main_roads.wkt
+MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+MapBasedMovement.mapFile4 = data/shops.wkt
+
+# Reports - all report names have to be valid report classes
+Report.nrofReports = 1
+Report.warmup = 0
+Report.reportDir = reports/request_buffer2020/
+Report.granularity = 1
+Report.report1 = ICNWholeEvaluationReport
+
+# Optimization settings -- these affect the speed of the simulation
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+# GUI settings
+GUI.UnderlayImage.fileName = data/helsinki_underlay.png
+GUI.UnderlayImage.offset = 64, 20
+GUI.UnderlayImage.scale = 4.75
+GUI.UnderlayImage.rotate = -0.015
+GUI.EventLogPanel.nrofEvents = 100
+
+# This configuration file adds Generator application for all the nodes
+generatorApp.type = GeneratorApplication
+generatorApp.proportion = 20,30
+generatorApp.interval = 700
+generatorApp.range = 0,10
+generatorApp.destinationRange = 0,30
+generatorApp.sizeRange = 1k,3k
+generatorApp.passive = false
+generatorApp.contentType = png|jpg|txt
+
+# This configuration file adds Request application for all the nodes
+RequestApp.type = RequestApplication
+RequestApp.interval = 1000
+RequestApp.proportion = 0,10
+RequestApp.targetRange = 0,10
+RequestApp.destinationRange = 0,30
+RequestApp.priorityRange = 1,10
+RequestApp.requestSize = 10
+RequestApp.passive = false

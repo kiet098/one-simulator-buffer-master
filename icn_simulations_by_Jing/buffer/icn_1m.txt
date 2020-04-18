@@ -1,0 +1,82 @@
+Scenario.name = [ICN_FIFO_G3I1_5k;ICN_FILO_G3I1_5k;ICN_FURTHEST_G3I1_5k;ICN_NEAREST_G3I1_5k;ICN_RAND_G3I1_5k]
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 30000
+Scenario.nrofHostGroups = 1
+
+# SimpleBroadcastInterface has Transmit speed of 2 Mbps = 250kBps
+# "Bluetooth" interface for all nodes
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+
+# Common settings for all groups
+Group.movementModel = ShortestPathMapBasedMovement
+Group.router = [ICN_FIFO_Router;ICN_FILO_Router;ICN_Furthest_Router;ICN_Nearest_Router;ICN_Random_Router]
+Group.bufferSize = 5k
+Group.waitTime = 0, 120
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.speed = 0.5, 1.5
+Group.msgTtl = 300
+Group.nrofHosts = 30
+Group.nrofApplications = 2
+Group.application1 = RequestApp
+Group.application2 = generatorApp
+
+Group1.groupID = c
+Group1.okMaps = 1
+Group1.speed = 2.7, 13.9
+
+# Message creation parameters
+Events.nrof = 0
+
+# Movement model settings
+MovementModel.rngSeed = 1
+MovementModel.worldSize = 4500, 3400
+MovementModel.warmup = 1000
+
+# Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.mapFile1 = data/roads.wkt
+MapBasedMovement.mapFile2 = data/main_roads.wkt
+MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+MapBasedMovement.mapFile4 = data/shops.wkt
+
+# Reports - all report names have to be valid report classes
+Report.nrofReports = 1
+Report.warmup = 0
+Report.reportDir = reports/buffer/
+Report.granularity = 1
+Report.report1 = ICNReport
+
+# Optimization settings -- these affect the speed of the simulation
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+# GUI settings
+GUI.UnderlayImage.fileName = data/helsinki_underlay.png
+GUI.UnderlayImage.offset = 64, 20
+GUI.UnderlayImage.scale = 4.75
+GUI.UnderlayImage.rotate = -0.015
+GUI.EventLogPanel.nrofEvents = 100
+
+# This configuration file adds Generator application for all the nodes
+generatorApp.type = GeneratorApplication
+generatorApp.proportion = 10,30
+generatorApp.interval = 700
+generatorApp.range = 0,30
+generatorApp.destinationRange = 0,30
+generatorApp.sizeRange = 1k,3k
+generatorApp.passive = false
+generatorApp.contentType = png|jpg|txt
+
+# This configuration file adds Request application for all the nodes
+RequestApp.type = RequestApplication
+RequestApp.interval = 1000
+RequestApp.proportion = 0,10
+RequestApp.targetRange = 0,30
+RequestApp.destinationRange = 0,30
+RequestApp.priorityRange = 1,10
+RequestApp.requestSize = 10
+RequestApp.passive = false

@@ -1,0 +1,13 @@
+# This configuration file adds Generator application for all the nodes
+
+# Define new application
+generatorApp.type = GeneratorApplication
+generatorApp.interval = 1000
+generatorApp.destinationRange = 0,79
+generatorApp.passive = false
+generatorApp.contentType = png|jpg|random
+
+# Set Generator app for all nodes
+Group1.nrofApplications = 1
+Group1.application1 = generatorApp
+Group1.router = ICN_FIFO_Router

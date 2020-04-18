@@ -1,0 +1,11 @@
+=========== response rate ==========
+average = 13.343253%
+matched = 3.9898992%
+=========== efficiency ==========
+Excess: 4220.0
+Total: 4232.0
+Efficiency (%): 0.2836
+
+=========== dropped packets ==========
+Average Dropped Interests: 1843.3334
+Average Dropped Data: 7046.6665

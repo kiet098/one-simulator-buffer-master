@@ -1,0 +1,14 @@
+# This configuration file adds Request application for all the nodes
+
+# Define new application
+RequestApp.type = RequestApplication
+RequestApp.spread = 5
+RequestApp.interval = 1000
+RequestApp.destinationRange = 0,79
+RequestApp.requestSize = 10
+RequestApp.passive = false
+
+# Set Request app for all nodes
+Group.nrofApplications = 1
+Group.application1 = RequestApp
+Group.router = ICN_FIFO_Router

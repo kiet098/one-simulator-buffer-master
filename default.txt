@@ -1,0 +1,72 @@
+Scenario.name = DEFAULT
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 15000
+Scenario.nrofHostGroups = 1
+
+# SimpleBroadcastInterface has Transmit speed of 2 Mbps = 250kBps
+# "Bluetooth" interface for all nodes
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+
+# Common settings for all groups
+Group.movementModel = ShortestPathMapBasedMovement
+Group.router = EpidemicRouter
+Group.bufferSize = 5M
+Group.waitTime = 0, 120
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.speed = 0.5, 1.5
+Group.msgTtl = 300
+Group.nrofHosts = 30
+Group.nrofApplications = 1
+Group.application1 = generatorApp
+
+Group1.groupID = c
+Group1.okMaps = 1
+Group1.speed = 2.7, 13.9
+
+# Message creation parameters
+Events.nrof = 0
+
+# Movement model settings
+MovementModel.rngSeed = 1
+MovementModel.worldSize = 4500, 3400
+MovementModel.warmup = 1000
+
+# Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.mapFile1 = data/roads.wkt
+MapBasedMovement.mapFile2 = data/main_roads.wkt
+MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+MapBasedMovement.mapFile4 = data/shops.wkt
+
+# Reports - all report names have to be valid report classes
+Report.nrofReports = 3
+Report.warmup = 0
+Report.reportDir = reports/
+Report.granularity = 1
+Report.report1 = CreatedMessagesReport
+Report.report2 = DeliveredMessagesReport
+Report.report3 = EfficiencyReport
+
+# Optimization settings -- these affect the speed of the simulation
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+# GUI settings
+GUI.UnderlayImage.fileName = data/helsinki_underlay.png
+GUI.UnderlayImage.offset = 64, 20
+GUI.UnderlayImage.scale = 4.75
+GUI.UnderlayImage.rotate = -0.015
+GUI.EventLogPanel.nrofEvents = 100
+
+# This configuration file adds Generator application for all the nodes
+generatorApp.type = GeneratorApplication
+generatorApp.proportion = 0,10
+generatorApp.interval = 800
+generatorApp.destinationRange = 0,29
+generatorApp.sizeRange = 10,100
+generatorApp.passive = false
+generatorApp.contentType = png|jpg|random

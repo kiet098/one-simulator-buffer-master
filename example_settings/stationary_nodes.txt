@@ -1,0 +1,10 @@
+#Group1 central node
+
+Group1.movementModel = StationaryMovement
+Group1.nrofHosts = 1
+Group1.nodeLocation = 0,0
+Group1.groupID = z
+Group1.bufferSize = 1G
+Group1.speed = 0,0
+
+Hope it helps!!!

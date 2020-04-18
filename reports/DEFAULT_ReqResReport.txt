@@ -1,0 +1,4 @@
+Excess: 569.0
+Total: 585.0
+Efficiency (%): 2.735
+

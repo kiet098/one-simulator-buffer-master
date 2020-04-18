@@ -1,0 +1,11 @@
+=========== response rate ==========
+average = 0.0%
+matched = NaN%
+=========== efficiency ==========
+Excess: 0.0
+Total: 0.0
+Efficiency (%): NaN
+
+=========== dropped packets ==========
+Average Dropped Interests: 403.33334
+Average Dropped Data: 0.0
