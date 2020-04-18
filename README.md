@@ -1,7 +1,8 @@
 # The ONE Simulator
 
 The Opportunistic Network Environment simulator.<br/>
-University College London 3rd Year Project.
+University College London 
+3rd Year BEng Project.
 
 Title: Forwarding Strategies for Information-Centric Devices-to-Device Networks
 2020.
